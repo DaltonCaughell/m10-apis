@@ -10,7 +10,7 @@ setwd('~/Documents/info-201/m10-apis/exercise-2/')
 # Write a function that allows you to specify an artist, and returns the top 10 tracks of that artist
 
 Get <- function(name) {
-  search <- fromJSON(paste("https://api.spotify.com/v1/search?q=", name, "&type=artist", sep=""))
+  search <- fromJSON(paste("https://api.spotify.com/v1/search?q=", URLencode(name), "&type=artist", sep=""))
   id <- search$artists$items$id[1]
   artist <- fromJSON(paste("https://api.spotify.com/v1/artists/", id, "/top-tracks?country=US", sep=""))
   return(artist$tracks)
